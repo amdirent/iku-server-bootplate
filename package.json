@@ -1,6 +1,6 @@
 {
-  "name": "qtea",
-  "description": "Generic Queueing Server",
+  "name": "iku-server-bootplate",
+  "description": "Bootplate server for iku framework",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
