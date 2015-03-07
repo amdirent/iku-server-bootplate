@@ -11,13 +11,11 @@ var koa                 = require('koa'),
     serve               = require('koa-static'),
     v1                  = require('./v1'),
     database            = require('./lib/database'),
-    pangeaApi           = require('./lib/pangea_api'),
     bodyParser          = require('koa-bodyparser'),
     requestBuilder      = require('./middleware/request_builder'),
     authenticate        = require('./middleware/authentication'),
     validateQuery       = require('./middleware/query_validator'),
     buildQuery          = require('./middleware/query_builder'),
-    distributionBuilder = require('./middleware/distribution_builder'),
     fetchEntity         = require('./middleware/entity_fetcher'),
     app                 = koa();
 
@@ -26,7 +24,6 @@ app.use(logger());
 app.use(cors({origin: true, methods: 'POST,GET,PUT,PATCH,DELETE'}));
 app.use(serve(__dirname + '/public'));
 app.use(database());
-app.use(pangeaApi());
 app.use(bodyParser({
     extendTypes: {
     json: ['text/plain']
@@ -35,9 +32,9 @@ app.use(bodyParser({
 app.use(router(app));
 
 app.post('/v1/accounts', requestBuilder, v1.create);                                                          // POST /accounts
-app.post('/v1/:table', authenticate, requestBuilder, validateQuery, v1.create, distributionBuilder);          // POST
-app.get('/v1/:table', authenticate, requestBuilder, v1.read, buildQuery);                                                 // GET /table
-app.get('/v1/:table/:id', authenticate, requestBuilder, v1.read, buildQuery);                                             // GET /table/id
+app.post('/v1/:table', authenticate, requestBuilder, validateQuery, v1.create);                               // POST
+app.get('/v1/:table', authenticate, requestBuilder, v1.read, buildQuery);                                     // GET /table
+app.get('/v1/:table/:id', authenticate, requestBuilder, v1.read, buildQuery);                                 // GET /table/id
 app.get('/v1/:table/:id/:entity', authenticate, requestBuilder, v1.read, buildQuery, fetchEntity);            // GET /table/id/entity
 app.get('/v1/:table/:id/:entity/:entityId', authenticate, requestBuilder, v1.read, buildQuery, fetchEntity);  // GET /table/id/entity/entityId
 app.put('/v1/:table/:id', authenticate, requestBuilder, v1.update);                                           // PUT /table/id
@@ -52,4 +49,3 @@ var options = {
 };
 
 https.createServer(options, app.callback()).listen(8443);
-console.log("Server listening on port 8443"); // OUTPUT THIS ONLY FOR DEV ENV
