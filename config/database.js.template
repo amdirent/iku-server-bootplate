@@ -2,8 +2,8 @@ module.exports = {
   client: 'pg',
   connection: {
     host: 'localhost',
-    user: '[app_name]',
-    password: '',
-    database: '[app_name]_production'
+    user: 'app_name',
+    password: 'psswd',
+    database: 'app_name_production'
   }
 };
