@@ -1,0 +1,24 @@
+{
+  "name": "qtea",
+  "description": "Generic Queueing Server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "basic-auth": "1.0.0",
+    "bluebird": "2.9.13",
+    "co-body": "1.1.0",
+    "congruence": "^1.6.9",
+    "knex": "^0.6.22",
+    "koa": "0.18.1",
+    "koa-bodyparser": "1.4.0",
+    "koa-cors": "0.0.14",
+    "koa-force-ssl": "0.0.4",
+    "koa-logger": "1.2.2",
+    "koa-router": "4.2.0",
+    "koa-static": "1.4.9",
+    "lodash": "^3.4.0",
+    "md5": "1.0.0",
+    "moment": "2.9.0",
+    "pg": "4.3.0"
+  }
+}
