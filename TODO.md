@@ -7,4 +7,5 @@ TODO
 * database should be created automatically
 * database user should be created automatically
 * default user should be granted access to app database
+* automatically install uuid-ossp
 * cli command for creating accounts
